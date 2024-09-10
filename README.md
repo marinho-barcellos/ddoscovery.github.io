@@ -1,6 +1,9 @@
-# DDoS-landscape-reports
+# DDoS Landscape Reports
 
-This repository contains a 2022 DDoS reports analysis spreadsheet, available in different formats (the main format we recommend is PDF or HTML, because of the formatting) and the report files used in the analysis.
+This repository contains the accompanying materials for the paper "The Age of DDoScovery: An Empirical Comparison of Industry and Academic DDoS Assessments", at the ACM Internet Measurement Conference 2024.
+
+The key document is a 2022 DDoS reports analysis spreadsheet, available in different formats (the main format we recommend is PDF or HTML, because of the formatting) and the report files used in the analysis.
+
 
 **Page info.**
 In the spreadsheet, we add page number information (e.g. "p3:") to allow the reader to easily locate the information in the original document.
