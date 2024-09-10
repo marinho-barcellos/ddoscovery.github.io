@@ -1,0 +1,1121 @@
+<script>
+    function sortTable(n) {
+        var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+        table = document.getElementById("myTable");
+        switching = true;
+        dir = "asc";
+
+        var headers = table.getElementsByTagName("TH");
+        for (i = 0; i < headers.length; i++) {
+            headers[i].innerHTML = headers[i].innerHTML.replace("▲ ", "").replace("▼ ", "");
+        }
+
+        while (switching) {
+            switching = false;
+            rows = table.rows;
+
+            for (i = 1; i < (rows.length - 1); i++) {
+                shouldSwitch = false;
+                x = rows[i].getElementsByTagName("TD")[n];
+                y = rows[i + 1].getElementsByTagName("TD")[n];
+
+                if (dir == "asc") {
+                    if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                } else if (dir == "desc") {
+                    if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+            }
+            if (shouldSwitch) {
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+                switchcount++;
+            } else {
+                if (switchcount == 0 && dir == "asc") {
+                    dir = "desc";
+                    switching = true;
+                } else if (switchcount == 0 && dir == "desc") {
+                    dir = "asc";
+                }
+            }
+        }
+
+        var header = table.getElementsByTagName("TH")[n];
+        header.innerHTML = dir == "asc" ? "▲ " + header.innerHTML : "▼ " + header.innerHTML;
+    }
+</script>
+
+
+<style>
+    body {
+        font-family: Seravek, 'Gill Sans Nova', Ubuntu, Calibri, 'DejaVu Sans', source-sans-pro, sans-serif;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 3500px;
+    }
+
+    th,
+    td {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    tr:hover {
+        background-color: #e8e8e8;
+    }
+
+    th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #04AA6D;
+        color: white;
+    }
+
+    .highlight {
+        background-color: #f9f9f9;
+    }
+</style>
+<h2>Summary of DDoS Industry Reports 2022</h2>
+<table id="myTable">
+    <tr class="highlight">
+        <th onclick="sortTable(0)">▼ VENDOR</th>
+        <th onclick="sortTable(1)">▼ SUMMARY</th>
+        <th onclick="sortTable(2)">▼ TITLE</th>
+        <th onclick="sortTable(3)">▼ FORMAT</th>
+        <th onclick="sortTable(4)">▼ PERIOD</th>
+        <th onclick="sortTable(5)">▼ ATTACK COUNTS</th>
+        <th onclick="sortTable(6)">▼ R/A</th>
+        <th onclick="sortTable(7)">▼ D/P</th>
+        <th onclick="sortTable(8)">▼ VECTORS</th>
+        <th onclick="sortTable(9)">▼ CHANGES END OF 2022</th>
+        <th onclick="sortTable(10)">▼ ATTACK DURATION/SIZE</th>
+        <th onclick="sortTable(11)">▼ ATTACK INTENSITY</th>
+        <th onclick="sortTable(12)">▼ CARPET BOMBING/PREFIX</th>
+        <th onclick="sortTable(13)">▼ MULTI-VECTOR</th>
+        <th onclick="sortTable(14)">▼ TARGET</th>
+        <th onclick="sortTable(15)">▼ VANTAGE POINTS/SOURCES</th>
+    </tr>
+    <td dir="ltr">A10</td>
+    <td dir="ltr">DDoS landscape in 2022. Focuses on the number of &quot;weapons&quot;, not attacks
+        themselves.</td>
+    <td dir="ltr">2022 DDoS Threat Report</td>
+    <td dir="ltr">Form/<span
+            style="text-decoration:underline;-webkit-text-decoration-skip:none;text-decoration-skip-ink:none;color:#1155cc;"><a
+                target="_blank"
+                href="https://www.a10networks.com/resources/reports/2022-ddos-threat-report/">PDF</a></span></td>
+    <td dir="ltr">2019 up to <span style="font-weight:bold;">2021 2H</span></td>
+    <td dir="ltr">No information about attack counts</td>
+    <td dir="ltr">p8: ⬆︎161% R/A <span style="font-weight:bold;">hosts</span> and DDoS <span
+            style="font-weight:bold;">bots</span>. <br>p21: SSDP</td>
+    <td dir="ltr">No specific information about direct/path attacks and associated vectors.</td>
+    <td dir="ltr">p9: largest DDoS &quot;weapons&quot; (reflectors, bots): SSDP 2.92M, PORTMAP 2M, SNMP
+        1.88M, DNS resolvers: 1.59M</td>
+    <td dir="ltr">Ends 2021</td>
+    <td dir="ltr">No information about attack duration.</td>
+    <td dir="ltr">Report makes a link between the attack intensity or destructive impact and the number of
+        &quot;weapons&quot;</td>
+    <td dir="ltr">No information about attacks with carpet-bombing.</td>
+    <td dir="ltr">No information about the number of vectors in attacks.</td>
+    <td dir="ltr">p5: Russia-Ukraine</td>
+    <td dir="ltr">p7: &quot;A10 Networks’ security research team gathers weapons intelligence by closely
+        monitoring attack agents under the control of botnet command and control (C2); discovering malware innovations
+        by deploying honeypots; intercepting self-replicating botnets; and scanning the internet for exposed reflected
+        amplification sources.&quot;</td>
+    </tr>
+    </th>
+    <td dir="ltr">Akamai</td>
+    <td dir="ltr">DDoS landscape in 2022</td>
+    <td dir="ltr">DDoS Attacks in 2022: Targeting Everything Online, All at Once</td>
+    <td dir="ltr">Open/<span
+            style="text-decoration:underline;-webkit-text-decoration-skip:none;text-decoration-skip-ink:none;color:#1155cc;"><a
+                target="_blank"
+                href="https://www.akamai.com/blog/security/ddos-attacks-in-2022-targeting-everything-online">Web</a></span>
+    </td>
+    <td dir="ltr">2022</td>
+    <td dir="ltr">No information about attack counts</td>
+    <td dir="ltr">Fig. 3: &quot;most common attack vectors targeting tcp:80, tcp:443, port 53, and port
+        &gt;1000.&quot; <span style="font-style:italic;">In our opinion, this seems incorrect: although any IP can be
+            attacked using almost any protocol and port, it does not seem feasible to attack tcp:80 using UDP, or TCP
+            with a different port.</span></td>
+    <td dir="ltr">In Fig.3, &quot;UDP flood&quot; is listed as 15.7% of attacks against TCP:443, as well as
+        other UDP-based vectors. <span style="font-style:italic;">We believe this classification does not make
+            sense.</span></td>
+    <td dir="ltr"></td>
+    <td dir="ltr">&quot;In recent months, we’ve observed a surge in horizontal attacks (Figure 1).&quot;
+        Carpet-bombing.</td>
+    <td dir="ltr">No information about attack duration.</td>
+    <td dir="ltr">No information about attack intensity, i.e. peak bandwidth or packet rate of attacks.</td>
+    <td dir="ltr">Fig 1: per quarter. Emphasis on carpet-bombing: “Horizontal attacks refer to simultaneous
+        DDoS attacks aimed at multiple, unrelated targets (which is why they’re sometimes called carpet bomb
+        attacks).&quot; <br>&quot;In recent months, we’ve observed a surge in horizontal attacks&quot;<br>&quot;which
+        hit 1813 IP addresses distributed across six physical data centers,&quot;</td>
+    <td dir="ltr">Fig 3 has 4 pie charts that show the fraction of vectors used, depending on the targeted
+        IP:port. There are no comments about potential overlap of vectors in attacks.</td>
+    <td dir="ltr">No information about targets, such as Industries, regions or countries affected.</td>
+    <td dir="ltr">&quot;By analyzing the ﬂow of data traversing our network, we can gain valuable insight
+        into an IP&#39;s activities prior to an attack, which we refer to internally as its &quot;IP day
+        job.&quot;&quot;</td>
+    </tr>
+    </th>
+    <td dir="ltr">Akamai</td>
+    <td dir="ltr">10y evolution of DDoS vectors, with a graph showing the fractions of vectors used in
+        attacks</td>
+    <td dir="ltr">The Relentless Evolution of DDoS Attacks</td>
+    <td dir="ltr">Open/<span
+            style="text-decoration:underline;-webkit-text-decoration-skip:none;text-decoration-skip-ink:none;color:#1155cc;"><a
+                target="_blank"
+                href="https://www.akamai.com/blog/security/relentless-evolution-of-ddos-attacks">Web</a></span></td>
+    <td dir="ltr">2010-2022 (2022-05)</td>
+    <td dir="ltr">No information about attack counts</td>
+    <td dir="ltr">&quot;Fig. 4: CharGEN attacks, SSDP ﬂoods, and CLDAP reﬂections are rarely seen
+        today&quot;<br>NTP reflection 10.7%</td>
+    <td dir="ltr">Fig. 2: &quot;UDP ﬂoods, SYN ﬂoods, and UDP fragmentation... They continue to be seen in
+        force, often alongside other vectors.&quot;<br>Fig. 5: 2022 (D/P) vectors: UDP flood 14.8%, UDP fragment 13.9%,
+        SYN flood 9.2%, ACK flood 5.4%, DNS flood 5.3%<br></td>
+    <td dir="ltr">Fig. 1 represents the use of vectors through time; a long list of vectors.</td>
+    <td dir="ltr">Ends 2022-05</td>
+    <td dir="ltr">No information about attack duration.</td>
+    <td dir="ltr">No information about attack intensity, i.e. peak bandwidth or packet rate of attacks.</td>
+    <td dir="ltr">No information about attacks with carpet-bombing.</td>
+    <td dir="ltr">Mentions the use of multiple vectors together</td>
+    <td dir="ltr">No information about targets, such as Industries, regions or countries affected.</td>
+    <td dir="ltr">No information about sources or methodology used.</td>
+    </tr>
+    </th>
+    <td dir="ltr">Arelion</td>
+    <td dir="ltr">DDoS landscape in 2022, slide-based style</td>
+    <td dir="ltr">DDoS Threat Landscape Report 2023</td>
+    <td dir="ltr">Open/<span
+            style="text-decoration:underline;-webkit-text-decoration-skip:none;text-decoration-skip-ink:none;color:#1155cc;"><a
+                target="_blank" href="https://www2.arelion.com/wp-securityreport2023">PDF</a></span></td>
+    <td dir="ltr">2022</td>
+    <td dir="ltr">p5: &quot;The number of DDoS attacks in our global network decreased by a 1/3 in 2022 –
+        with 50% fewer attacks towards our customers.&quot;</td>
+    <td dir="ltr">p11: &quot; As a result [of reduction of spoofing], the <span style="font-weight:bold;">underlying
+            threat from reﬂection attacks is slowly but surely being
+            reduced</span>.&quot;<br>p11: &quot;DNS &amp; NTP are still the two most common attack vectors, with NTP
+        decreasing slightly during the year. &quot;<br></td>
+    <td dir="ltr">p14: &quot;we are seeing an increase in direct-path attacks from botnets, – albeit it to a
+        lesser extent. These are more expensive to purchase since bots are a valuable asset for cyber criminals and if
+        exposed, they risk being shut down when used extensively. Also, proxies are being used more – as a smoke screen
+        to protect the bots from being exposed.&quot; <span style="font-style:italic;">It is not clear if the increase
+            is of D/P attacks, or D/P attacks from botnets.</span></td>
+    <td dir="ltr">⬇︎ spoofed UDP attacks<br>p11: &quot;We also noticed a <span style="font-weight:bold;">decline in
+            UDP-based spooﬁng attacks</span> as servers are slowly being secured
+        throughout the internet and are consequently used less frequently for such attacks.&quot;</td>
+    <td dir="ltr">p5: &quot;There was a <span style="font-weight:bold;">dramatic reduction in DDoS activity
+            within our network during the final months of the year</span>. &quot; <br>p5: &quot;...there was a
+        noticeable trend towards larger (bps) attacks targeting our customers at the end of the year.
+        &quot;<br>Reduction of NTP, increase of memcached, TCP SYN. </td>
+    <td dir="ltr">p9: Avg duration ⬆︎3% (11min). Avg attack size ⬆︎10% (11 Gbps) ⬆︎61% (6 Mpps). Most attacks
+        were small. 50% of attacks last 5-10min.<br>p10: &quot;When looking at the overall size distribution of attacks
+        in our backbone, we see that while there has been an increase in the number of large attacks, the vast majority
+        of attacks are still small. ... We saw the biggest increase in the 5-20 &amp; 20-50 Gbps attack
+        ranges.&quot;<br></td>
+    <td dir="ltr">p6: Peak attack bandwidth ⬆︎19%. p8: Peak attack 813 Gbps, 854 Mpps</td>
+    <td dir="ltr">p15: &quot;CB attacks have become increasingly less effective, more sporadic. <span
+            style="font-style:italic;">&quot;</span></td>
+    <td dir="ltr">No information about the number of vectors in attacks.</td>
+    <td dir="ltr">No information about targets, such as Industries, regions or countries affected.</td>
+    <td dir="ltr">p2: &quot;Operating the world’s #1 Internet backbone gives us a unique global perspective
+        on the constantly evolving DDoS threat landscape. Using our own network data... When looking at the overall size
+        distribution of attacks in our backbone...&quot;</td>
+    </tr>
+    </th>
+    <td dir="ltr">Cloudflare</td>
+    <td dir="ltr">DDoS landscape in Q4 2022. The reports are quarterly, and so most comparisons are QoQ, not
+        YoY. Separates in two classes attacks: HTTP/S DDoS and &quot;network layer&quot; attacks.</td>
+    <td dir="ltr">DDoS Attack Trends for 2022 Q4</td>
+    <td dir="ltr">Open/<span
+            style="text-decoration:underline;-webkit-text-decoration-skip:none;text-decoration-skip-ink:none;color:#1155cc;"><a
+                target="_blank" href="https://radar.cloudflare.com/reports/ddos-2022-q4">Web</a></span></td>
+    <td dir="ltr">2022 Q4</td>
+    <td dir="ltr">No information about attack counts</td>
+    <td dir="ltr">&quot;In Q4, Memcached-based DDoS attacks saw the highest growth — a 1,338% increase
+        QoQ&quot;.<br>&quot;In second place, SNMP-based DDoS attacks increased by 709% QoQ.&quot;</td>
+    <td dir="ltr">&quot;In Q4, <span style="font-weight:bold;">SYN floods</span> remained the attacker’s
+        method of choice — in fact, almost half of all network-layer DDoS attacks were SYN floods.&quot;<br>&quot;The
+        amount of HTTP DDoS attack traffic still increased by 79% YoY&quot;<span
+            style="font-style:italic;"><br></span>&quot;Application-layer DDoS attacks: Distribution by quarter... we
+        can see a clear downward trend in attacks each quarter this year.&quot; Bar plot shows that <span
+            style="font-weight:bold;">HTTP DDoS attacks decreased</span> in each quarter: 28%, 27%, 24%, 21%.</td>
+    <td dir="ltr"><span style="font-style:italic;">This report separates attacks into two classes:
+            Application layer, and Network layer (which actually includes the transport layer e.g. SYN
+            attacks).<br></span>&quot;Network-layer DDoS attacks: Distribution by quarter&quot;. Quarters: 21%, 24%,
+        30%, 26%. It does not indicate if the attacks are D/P or R/A.</td>
+    <td dir="ltr">No plot or table with longitudinal data for the period considered.</td>
+    <td dir="ltr">&quot;In Q4, the amount of shorter attacks lasting less than 10 minutes decreased by 76%
+        QoQ, and the amount of longer attacks increased. Most notably, attacks lasting 1-3 hours increased by 349% <span
+            style="font-weight:bold;">QoQ</span> and the amount of attacks lasting more than three hours increased by
+        87% <span style="font-weight:bold;">QoQ</span>. Most of the attacks, over 67% of them, lasted 10-20
+        minutes.&quot;</td>
+    <td dir="ltr">No information about attack intensity, i.e. peak bandwidth or packet rate of attacks.</td>
+    <td dir="ltr">No information about attacks with carpet-bombing.</td>
+    <td dir="ltr">No information about the number of vectors in attacks.</td>
+    <td dir="ltr">&quot;Source and targets of DDoS attacks&quot;. Contains a discussion about countries and
+        industries attacked.</td>
+    <td dir="ltr">&quot;This report includes insights and trends about the DDoS threat landscape - as
+        observed across Cloudflare’s global network.&quot;</td>
+    </tr>
+    </th>
+    <td dir="ltr">Comcast</td>
+    <td dir="ltr">Generic report, includes DDoS landscape in 2022, from p21</td>
+    <td dir="ltr">2023 Comcast Business<br>Cybersecurity Threat<br>Report</td>
+    <td dir="ltr">Open/<span
+            style="text-decoration:underline;-webkit-text-decoration-skip:none;text-decoration-skip-ink:none;color:#1155cc;"><a
+                target="_blank"
+                href="https://business.comcast.com/community/docs/default-source/default-document-library/ccb_threatreport_071723_v2.pdf?sfvrsn=c220ac01_2">PDF</a></span>
+    </td>
+    <td dir="ltr">2022</td>
+    <td dir="ltr">p22: &quot;The year 2022 saw a slight decline in worldwide DDoS attacks. ... Comcast
+        Business detected a total of 51,915 DDoS attacks.&quot;<br><span style="font-style:italic;">We observed that the
+            number of DDoS attacks in the Comcast 2021 report was different in orders of magnitude, in the millions. We
+            asked Comcast, which indicated that the discrepancy was &quot;due to a change in methodology&quot;, without
+            further details. </span></td>
+    <td dir="ltr">p23: &quot;Vectors Responsible for Generating DDos Traffic&quot;. Percentages normalised to
+        total traffic <span style="font-style:italic;">(similar to Cloudflare)</span>: DNS R/A 7%, 1% R/A other.
+        <br>p23: &quot;While <span style="font-weight:bold;">amplification attacks continued to play a role, they
+            represented a smaller percentage of attack traffic</span>.&quot;<br><span style="font-style:italic;">With
+            benign 85%, we assume DNS R/A was 7/15 or 46% of attack traffic.</span>
+    </td>
+    <td dir="ltr">p23: Out of total traffic, TCP SYN 3%. <span style="font-style:italic;">With 85% benign
+            traffic, we assume that TCP SYN was 3/15 or 20% of attack traffic.</span> </td>
+    <td dir="ltr">p23: &quot;Adversaries did not change their tactics much during 2022. Most attacks still
+        used low-complexity, high-impact flooding techniques. This is validated by NetScout’s review of all 9.4 million
+        DDoS attacks they tracked last year, which identified total traffic, UDP, and TCP Sync as the top three vectors
+        used&quot; <span style="font-style:italic;">There is no link.</span></td>
+    <td dir="ltr">Potential decrease in #attacks in December. p22: plot shows that the number of attacks went
+        up July-Aug-Sept (2.8k, 4.5k, 8k), then decreased Oct-Nov-Dec (5k, 5.1k, 3k). </td>
+    <td dir="ltr">p22: &quot;Short-burst attacks dominate. ... Once again, the bulk of the attacks were under
+        ten minutes long. The trend of short-burst attacks has continued since the prior year.&quot;<br>0-5m (22%),
+        6-10m (54%), 1-12h (3%). </td>
+    <td dir="ltr">No information about attack intensity, i.e. peak bandwidth or packet rate of attacks.</td>
+    <td dir="ltr">No information about attacks with carpet-bombing.</td>
+    <td dir="ltr">p23: &quot;31% of Comcast Business detected attacks in 2022 were multi-vector attacks. 82%
+        of all multi-vectors contained DNS amplification vectors.&quot;</td>
+    <td dir="ltr">p23: &quot;Figure 13: DDoS attacks by industry segment detected by Comcast Business in
+        2022&quot;</td>
+    <td dir="ltr">No information about sources or methodology used.</td>
+    </tr>
+    </th>
+    <td dir="ltr">Corero</td>
+    <td dir="ltr">DDoS landscape in 2022</td>
+    <td dir="ltr">2023 DDoS Threat Intelligence Report</td>
+    <td dir="ltr">Open/<span
+            style="text-decoration:underline;-webkit-text-decoration-skip:none;text-decoration-skip-ink:none;color:#1155cc;"><a
+                target="_blank"
+                href="https://www.juniper.net/content/dam/www/assets/analyst-reports/us/en/2023/corero-ddos-threat-intelligence-report.pdf">PDF</a></span>
+    </td>
+    <td dir="ltr">2022</td>
+    <td dir="ltr">No information about attack counts</td>
+    <td dir="ltr">No information about reflection/amplification attacks.</td>
+    <td dir="ltr">p13: &quot;Data compiled by the Corero Threat Intelligence team and shown in figure 8
+        confirms a significant 70% increase in the percentage of successfully detected and mitigated DDoS attacks using
+        TCP-based vectors.&quot;<br>In the figure, TCP represented 28-38% of attacks when compared to UDP. <span
+            style="font-style:italic;">Note that unlike TCP, UDP is used in both D/P and R/A attacks, so it is not
+            possible to say what was the increment in D/P.</span><br></td>
+    <td dir="ltr">p12: ⬆︎600% in IPv6 traffic</td>
+    <td dir="ltr">No plot or table with longitudinal data for the period considered.</td>
+    <td dir="ltr">p18: 75% attacks &lt; 10min, ⬆︎60% attacks &gt; 60min</td>
+    <td dir="ltr">p18: 98% attacks &lt; 10 Gbps, ⬆︎25% high packet rate attacks</td>
+    <td dir="ltr">p6: ⬆︎300% CB. 1844 attacks in 2021, 7581 in 2022. <br>p6: &quot;Carpet bomb attacks are
+        difficult to defend against, stymying many of the traditional detect-and-redirect DDoS mitigation
+        techniques.&quot; <span style="font-style:italic;">The report contains a long explanation of CB attacks,
+            including an example (Section 2). </span></td>
+    <td dir="ltr">No information about the number of vectors in attacks.</td>
+    <td dir="ltr">p14: 29% destination port 53, 17% destination port 80, 7% 123 (NTP). <br>p14: &quot;It is
+        not possible to pinpoint the precise reason for the choice of these destination ports. But, based upon a mapping
+        of the target ports on the intended victim IP/system, our analysis suggests that it is not primarily to attack
+        these specific DNS, web, or NTP-based services. Instead, we believe that these ports are chosen for the access
+        they provide for malicious traffic to enter the network via open ACL/firewall rules.&quot;</td>
+    <td dir="ltr">No information about sources or methodology used.</td>
+    </tr>
+    </th>
+    <td dir="ltr">DDoS-Guard</td>
+    <td dir="ltr">DDoS landscape in 2022 (Russian)</td>
+    <td dir="ltr">DDoS Attack Trends in 2022</td>
+    <td dir="ltr">Open/<span
+            style="text-decoration:underline;-webkit-text-decoration-skip:none;text-decoration-skip-ink:none;color:#1155cc;"><a
+                target="_blank" href="https://ddos-guard.net/en/blog/ddos-attack-trends-2022">Web</a></span></td>
+    <td dir="ltr">2022</td>
+    <td dir="ltr">&quot;1,255,573 is the total number of DDoS attacks detected and successfully mitigated by
+        DDoS-Guard in 2022.&quot;<br>&quot;We observe the greatest upsurge in DDoS attacks in recorded history. Ongoing
+        geopolitical events made the number of attacks on Russian websites increase by 700%, compared to 2021.&quot;
+    </td>
+    <td dir="ltr">No information about reflection/amplification attacks.</td>
+    <td dir="ltr">No specific information about direct/path attacks and associated vectors.</td>
+    <td dir="ltr">&quot;Emphasis on Application Layer Attacks. We observed an over 600% increase in the
+        number of DDoS attacks in the first half of 2022. Most of them were application layer attacks (L7, according to
+        the OSI model). &quot;</td>
+    <td dir="ltr">No plot or table with longitudinal data for the period considered.</td>
+    <td dir="ltr">&quot;The duration of DDoS attacks has decreased, in comparison to 2021. Nevertheless, the
+        frequency has increased by 3-4 times.&quot;<br>&quot;In 2022, the vast majority of DDoS attacks lasted up to 20
+        minutes, and a signiﬁcant number of them lasted from 20 minutes to 1 hour. Attacks lasting 24 hours or longer
+        comprise less than 1% of the total number of incidents.&quot;<br>700k attacks &lt; 20min, 281k 20min-1h, 178k,
+        1-6h, 26k 6-12h... 3k &gt; 24h</td>
+    <td dir="ltr">No information about attack intensity, i.e. peak bandwidth or packet rate of attacks.</td>
+    <td dir="ltr">No information about attacks with carpet-bombing.</td>
+    <td dir="ltr">No information about the number of vectors in attacks.</td>
+    <td dir="ltr">&quot;The primary targets were websites related to the media, government, and ﬁnancial
+        services.&quot;<br>&quot;The number of DDoS attacks on media portals increased by a record-breaking 76 times
+        (51,842 incidents compared to 670 in 2021). Government-related websites were also constantly under attack, with
+        the number of incidents increased by 55 times (20,766 compared to 370). The websites of banks and financial
+        organizations were attacked 20 times more often than in 2021 (27,600 incidents compared to 1,318).&quot;</td>
+    <td dir="ltr">No information about sources or methodology used.</td>
+    </tr>
+    </th>
+    <td dir="ltr">DDoS-Guard</td>
+    <td dir="ltr">DDoS landscape in 2022 (Russian). Infographic with a summary of numbers.</td>
+    <td dir="ltr">Analytical Report<br>on DDoS Attacks<br>for 2022</td>
+    <td dir="ltr">Open/<span
+            style="text-decoration:underline;-webkit-text-decoration-skip:none;text-decoration-skip-ink:none;color:#1155cc;"><a
+                target="_blank" href="https://ddos-guard.net/info/protect?id=40954">PDF</a></span></td>
+    <td dir="ltr">2022</td>
+    <td dir="ltr">p4: 1.25M attacks, compared to 147k in 2021. <span style="font-style:italic;">The one order
+            of magnitude increase may be associated with the Russia-Ukraine conflict, as this is a Russian provider.
+        </span>Highest number of attacks in March. </td>
+    <td dir="ltr">No information about reflection/amplification attacks.</td>
+    <td dir="ltr">No specific information about direct/path attacks and associated vectors.</td>
+    <td dir="ltr"><span style="font-style:italic;">This report separates attacks into two classes: Layer 7,
+            and Layer 3-4.<br></span>p2: 171k L3-L4 attacks vs 1M L7 attacks. <span style="font-style:italic;">This
+            contradicts the reports that state that flooding attacks are the most common, by far. </span></td>
+    <td dir="ltr">p3: Plot shows the number of attacks per month. <span style="font-style:italic;">There is a
+            visible reduction in November and December 2022.</span></td>
+    <td dir="ltr">p4: &quot;In 2022, we detected a new internal record: the longest DDoS attack lasted 68
+        days, compared to 52 days in 2021. Though, the overall trend has been as follows: short-duration attacks have
+        become more common, with the total number increasing by 700%.&quot;</td>
+    <td dir="ltr">No information about attack intensity, i.e. peak bandwidth or packet rate of attacks.</td>
+    <td dir="ltr">No information about attacks with carpet-bombing.</td>
+    <td dir="ltr">No information about the number of vectors in attacks.</td>
+    <td dir="ltr">p2: &quot;Distribution of Attacks by Industry&quot;</td>
+    <td dir="ltr">No information about sources or methodology used.</td>
+    </tr>
+    </th>
+    <td dir="ltr">F5</td>
+    <td dir="ltr">DDoS landscape in 2022</td>
+    <td dir="ltr">2023 DDoS Attack Trends</td>
+    <td dir="ltr">Open/<span
+            style="text-decoration:underline;-webkit-text-decoration-skip:none;text-decoration-skip-ink:none;color:#1155cc;"><a
+                target="_blank"
+                href="https://www.f5.com/labs/articles/threat-intelligence/2023-ddos-attack-trends">Web</a></span></td>
+    <td dir="ltr">2020-2022</td>
+    <td dir="ltr">&quot;Overall observed events are down by -9.7%&quot;<br>Figure 2: 984 attacks in 2022,
+        ~1100 in 2021.</td>
+    <td dir="ltr">No information about reflection/amplification attacks.</td>
+    <td dir="ltr">&quot;In 2022, Application vector attacks grew dramatically, by 165%, even as the overall
+        number of attacks went down.&quot;<br>Of L7-attacks, 93.4% were <span style="font-weight:bold;">DNS request
+            floods</span>, not DNS R/A; see Terms Used in This Report. <br></td>
+    <td dir="ltr"><span style="font-style:italic;">This report separates attacks into the following classes:
+            Volumetric, Protocol, Application, and Multiple Vector.<br></span>&quot;Figure 2 2020-2022 DDoS Attack
+        Category counts. This shows a large increase in the number of Application attacks, with a corresponding
+        reduction in Volumetric and Multiple Vector categories&quot;<br>From plot, Total 984 attacks: Multi-vector
+        (369), L7 (351), vol. (168), protocol (96). <br></td>
+    <td dir="ltr">See Figure 10 Peak bandwidth over time 2020-2022. <span style="font-style:italic;">We see
+            no visible effect. </span></td>
+    <td dir="ltr">No information about attack duration.</td>
+    <td dir="ltr">&quot;In 2022, the maximum peak bandwidth we observed was 800mbps, down from 1.39tbps the
+        year before, a 42.4% decrease (Figure 3)&quot;<br></td>
+    <td dir="ltr">No information about attacks with carpet-bombing.</td>
+    <td dir="ltr">Fig. 2: 369/984 attacks multi-vector</td>
+    <td dir="ltr">DDoS attacks targeting DNS ports or services</td>
+    <td dir="ltr">&quot;A Note on the Analysis... There are, however, a few things to keep in mind when
+        reading any analysis of DDoS trends and events. Bringing a critical frame of mind to any data to determine
+        relevance to your specific situation is key to being able to turn observations into action. <span
+            style="font-weight:bold;">Any dataset relating to DDoS traffic will only show what the collection point was
+            able to observe, and this will be only a fraction of the total DDoS that occurred across the
+            internet.</span>&quot;<br></td>
+    </tr>
+    </th>
+    <td dir="ltr">Huawei</td>
+    <td dir="ltr">DDoS landscape in 2022</td>
+    <td dir="ltr">Global DDoS Attack Status and Trend Analysis in 2022</td>
+    <td dir="ltr">Open/<span
+            style="text-decoration:underline;-webkit-text-decoration-skip:none;text-decoration-skip-ink:none;color:#1155cc;"><a
+                target="_blank"
+                href="https://e.huawei.com/en/material/networking/security/0c561b8fd2d342999cd402bcecf6d452">PDF</a></span>
+    </td>
+    <td dir="ltr">2022</td>
+    <td dir="ltr">p16: &quot;In 2022, Huawei detected 104,922 attacks exceeding 100 Gbps, with an average of
+        287 attacks per day. The number of attacks at over 100 Gbps is 1.5 times that of 2021 and 2.1 times that of
+        2020.&quot; <span style="font-style:italic;">With this analysis, the report removes the large number of attacks
+            that are too small to be disruptive.</span></td>
+    <td dir="ltr">No information about reflection/amplification attacks.</td>
+    <td dir="ltr">p2, p14: &quot;The largest application-layer attack in the Internet history occurred in
+        June 2022, peaked at 46 million rps&quot;</td>
+    <td dir="ltr">p3: &quot;In the past three years, the proportions of ACK flood and UDP flood attacks in
+        network-layer attacks have been increasing year by year.&quot; <br>p19: &quot;In 2022, SYN flood, ACK flood, UDP
+        flood, UDP reflection, and TCP reflection attacks are top 5 network-layer attacks.&quot; <span
+            style="font-style:italic;">Therefore, the fraction of D/P attacks (the three first) is likely higher than
+            that of R/A (the two others).</span><br>p19: &quot;In 2022, ACK flood attacks accounted for 23.16%, 2.1
+        times that in 2021 and 10.9 times that in 2020. The <span style="font-weight:bold;">main reason why the number
+            of ACK flood attacks increases</span> rapidly is that network-layer CC attacks launched by the Mirai botnet
+        are destructive, and hard to be defended against.&quot; <span style="font-style:italic;">The reason mentioned
+            was the increase of botnets, not a reduction in spoofing, though these may be inter-related.</span></td>
+    <td dir="ltr">p15-18: Plots by month 2020-2022 show some changes in the period Oct-Dec 2022. <span
+            style="font-style:italic;">However, it is hard to see a meaningful trend.</span></td>
+    <td dir="ltr">p3: &quot;57.40% of network-layer attacks and 40.49% of application-layer attacks last for
+        ≤ 5 minutes&quot;</td>
+    <td dir="ltr">p2: &quot;There were 232 attacks above 800 Gbps, 1.67 times that in 2021.&quot;<br>p2:
+        &quot;In November, China Telecom&#39;s security team detected the attack with the annual maximum bandwidth,
+        which peaked at 3.189 Tbps.&quot;<br>p2: &quot;In April, China Telecom&#39;s security team detected the attack
+        with the annual highest packet rate, which peaked at 861 Mpps.&quot;</td>
+    <td dir="ltr">p14: &quot;The scale of carpet-bombing attacks rapidly increases, with the attacked class C
+        IP address segments surging from 100+ in 2021 to 600+ in 2022. Ultra large-scale attacks pose severe challenges
+        to defense costs.&quot;</td>
+    <td dir="ltr">p21: &quot;In 2022, the proportion of multi-vector attacks accounted for 63.47%, which is
+        less than that in 2021.&quot; The bottom plot on the same page shows that in 2022 36% of attacks used 1 vector,
+        while 30% had 5+ vectors.<br>p6: &quot;During the 2022 World Cup, DDoS attacks were extremely active. Multiple
+        attacks on payment platforms and APIs occurred in China. ... The entire attack process can be divided into seven
+        phases, and a total of 14 attack vectors were used: UDP flood, spoofed QUIC flood, SYN flood, large SYN flood,
+        SYN flood with real source IP addresses, network-layer CC, NTP reflection, SSDP reflection, DNS reflection, UDP
+        fragment, TCP reflection, ICMP flood, other flood, and application-layer CC (HTTP flood).&quot;</td>
+    <td class="s2" dir="ltr"><span style="font-style:normal;">p39: &quot;API calls currently account for more than 83%
+            of all Internet traffic according to Akamai. Cloudflare claims that 55% of traffic traversing its network is
+            related to APIs. Due to the large quantity of APIs and enterprises&#39; inadequate attention to API
+            security, API attacks have become one of the biggest threats faced by enterprises. Cloudflare also claims
+            that its network security devices block more traffic attacking APIs than that attacking websites.
+        </span><span style="font-weight:bold;font-style:normal;">This indicates that APIs have become the main target of
+            network attacks.</span><span style="font-style:normal;">&quot;<br>p39: &quot;Attack Type Distribution. By
+            tracing the DDoS attacks targeting APIs, we find that APIs suffer most of the attacks that have occurred on
+            the Internet. In 2022, the top 5 types of attacks targeting APIs were network-layer CC, SYN flood, UDP
+            flood, HTTP flood, and UDP reflection attacks.&quot;<br></span>Note: CC = Challenge Collapsar. CC attacks
+        are mainly used to attack web pages (via invalid requests). <br><span style="font-style:normal;">p39-49: Attacks
+            against APIs. <br>p51-72: Attacks against the finance industry. </span></td>
+    <td dir="ltr">p77: &quot;The data involved in this report originates from China Telecom Cybersecurity
+        Technology Co.,Ltd., China Unicom Digital Technology Company Limited, Baidu Security, Nexusguard, Huawei Cloud,
+        and DDoS attack related data from Huawei&#39;s customers after authorization.&quot;</td>
+    </tr>
+    </th>
+    <td dir="ltr">Imperva</td>
+    <td dir="ltr">DDoS landscape in 2022</td>
+    <td dir="ltr">DDoS Threat Landscape Report 2023</td>
+    <td dir="ltr">Form/<span
+            style="text-decoration:underline;-webkit-text-decoration-skip:none;text-decoration-skip-ink:none;color:#1155cc;"><a
+                target="_blank"
+                href="https://www.imperva.com/resources/resource-library/reports/ddos-threat-landscape-report-2023/">PDF</a></span>
+    </td>
+    <td dir="ltr">2021-2022</td>
+    <td dir="ltr">p9: &quot;Application Layer DDoS attacks increasing year on year. The number of application
+        layer DDoS attacks has been on an upward trajectory year on year as the chart below shows.&quot; <span
+            style="font-style:italic;">The Y axis does not show values or units, so it is not possible to read the
+            magnitude of the growth, even in relative terms. The same problem applies to other plots on the same
+            page.<br>The report does not comment about the global number of DDoS attacks, considering all
+            categories.</span></td>
+    <td dir="ltr">No information about reflection/amplification attacks.</td>
+    <td dir="ltr">p8: &quot;Application Layer (L7) DDoS attacks increased by a staggering 82% YoY in 2022 vs
+        2021.&quot;<br>SYN 21%</td>
+    <td dir="ltr"><span style="font-style:italic;">This report separates attacks in two classes, Application
+            Layer DDoS Attacks, and Network Layer DDoS Attacks, and presents results separately.<br></span>p12:
+        &quot;Network Layer DDoS most common attack vectors.&quot; According to the pie chart on the same page: UDP 42%,
+        SYN 21%, TCP 11%, DNS response 7.8%, NTP 7.7%.<br></td>
+    <td dir="ltr">p8: The bar plot shows monthly Application Layer DDoS attacks. <span style="font-style:italic;">There
+            is some growth in the last three months of 2022.</span><br></td>
+    <td dir="ltr">p10: &quot;Application Layer DDoS Attack Duration. Our research shows that Layer 7 DDoS
+        attack duration is becoming longer in duration with <span style="font-weight:bold;">almost 40% of all Layer 7
+            DDoS attacks lasting more than 12 hours</span>, an increase of 33% of attacks in 2021.&quot;<br>p13:
+        &quot;Network Layer DDoS attack duration. <span style="font-weight:bold;">66%</span> of all Network Layer DDoS
+        attacks mitigated by Imperva lasted <span style="font-weight:bold;">15 minutes or less</span> in
+        2022.&quot;<br>p10, p13: pie charts. L7 attacks longer (40%&gt;12h, 27%&lt;15m) than L3/L4 (66%&lt;15m, 12-24h
+        1.2%). <br></td>
+    <td dir="ltr">p3: &quot;The largest Layer 3 and 4 DDoS attack occurred in July and peaked at 1373
+        gigabits per second (Gbps). Layer 3 and 4 attacks rose dramatically in August 2022 in comparison to any other
+        month of the year.&quot; <br>p11: &quot;The largest protocol attack mitigated peaked at 591 million packets per
+        second (Pps).&quot;</td>
+    <td dir="ltr">No information about attacks with carpet-bombing.</td>
+    <td dir="ltr">p11: &quot;In 2022, <span style="font-weight:bold;">almost 73% of all layer 3 and 4 DDoS
+            attacks consisted of a single vector</span> which is in sharp contrast to 2021 when only 21% of attacks were
+        single-vector. This might indicate that DDoS attackers are leveraging single vector attacks as part of a wider
+        attack strategy possibly as a distraction tactic.&quot;<br></td>
+    <td dir="ltr">p9: &quot;Application Layer DDoS attacks growth by industry. Application Layer DDoS attacks
+        on the Telecoms and Internet Services Provider (ISP) sector increased by 250% in 2022 vs 2021. Application Layer
+        DDoS attacks on Financial Services more than doubled in 2022 compared to the previous year’s increase by
+        121%.&quot;<br><br>p12: &quot;Network Layer DDoS most targeted industries. Financial Services and Banking
+        targets accounted for around 16% of all network layer DDoS attacks in 2022 followed by the Entertainment
+        industry at 8.4%.&quot;<br><br>p6: &quot;Why APIs are a Target for DDoS Attacks. A shift to more modern
+        applications has meant an explosion in the adoption of API endpoints which, as they become more intrinsic to a
+        company&#39;s infrastructure, present new opportunities for cybercriminals to cause disruption.&quot; <span
+            style="font-style:italic;">Similar to Huawei&#39;s report, there is some emphasis on attacks against
+            APIs.</span><br><br>p5: &quot;No one is safe from DDoS. In December 2022, it was reported that a DDoS strike
+        on the Vatican website took it offline for several days, possibly the work of Russian activists.&quot;</td>
+    <td dir="ltr">p3: &quot;The report leverages intelligence provided by Imperva Threat Research based on
+        data from application and network DDoS attacks we have mitigated. It also provides additional observations based
+        on general DDoS activity throughout the year.&quot;</td>
+    </tr>
+    </th>
+    <td dir="ltr">Kapersky</td>
+    <td dir="ltr">DDoS landscape in Q3 2022. <span style="font-style:italic;">Report highlights threat actors
+            and high-profile attacks, but does not describe them. It includes relative/normalised trends and
+            stats.</span></td>
+    <td dir="ltr">DDoS attacks in Q3 2022</td>
+    <td dir="ltr">Open/<span
+            style="text-decoration:underline;-webkit-text-decoration-skip:none;text-decoration-skip-ink:none;color:#1155cc;"><a
+                target="_blank" href="https://securelist.com/ddos-report-q3-2022/107860/">Web</a></span></td>
+    <td dir="ltr">2022 Q3. <span style="font-style:italic;">No 2022 Q4 report.</span></td>
+    <td dir="ltr">&quot;The number of DDoS attacks in Q3 2022 fell again. Having decreased by 13.72 percent
+        in the previous reporting period relative to the one before, this quarter it dropped by a further 27.29 percent,
+        to 57,116.&quot;<br><br>Figure: &quot;Comparative number of DDoS attacks, Q32021,Q2 and Q3 2022.Q3 2021data is
+        taken as100%. The first thing worth noting is the significant rise in the number of DDoS attacks of all types
+        relative to the previous reporting period.&quot; The attack count in Q3 2022 is 203.66% compared to Q3
+        2021.<br><br></td>
+    <td dir="ltr">No information about reflection/amplification attacks.</td>
+    <td dir="ltr">&quot;The share of UDP flood fell from 62.53 to 51.84 percent, but remained the most common
+        type of DDoS. The second most common, SYN flood, on the contrary, increased its share to 26.96 percent. TCP
+        flood (15.73%) reversed its decline, adding more than 4 percentage points to hold on to third place. GRE flood
+        and HTTP flood made up 3.70 and 1.77 percent, respectively, of the total number of attacks.&quot;<br>&quot;UDP
+        flood accounted for 51.84 percent of the total number of attacks, and SYN flood for 26.96 percent.&quot;</td>
+    <td dir="ltr">&quot;In Q3 2022, the ranking of DDoS attack types was unchanged from the previous
+        reporting period.&quot;<br>&quot;Moreover, DDoS attacks on HTTP(S) this quarter exceeded those on TCP for the
+        first time, despite the latter being easier to organize and still the most common type of
+        DDoS.&quot;<br>&quot;What’s most interesting is that, in absolute terms, the <span
+            style="font-weight:bold;">number of attacks on HTTP(S) has remained quite stable over the past year</span>.
+        The <span style="font-weight:bold;">share of attacks on TCP is on a downward curve</span>, which reflects well
+        the general trend: the share of dumb DDoS attacks is falling, while that of smart attacks is growing.&quot;</td>
+    <td dir="ltr">No plot or table with longitudinal data for the period considered.</td>
+    <td dir="ltr">&quot;Attacks lasting less than four hours accounted for 60.65 percent of the total
+        duration of attacks and for 94.29 percent of the total number of attacks.&quot;<br>&quot;In Q3 2022, sustained
+        attacks of 20 hours or more accounted for 19.05 percent of the total duration of attacks.&quot;<br>In Q3, 19% of
+        attacks &gt; 20h; 3.16% of attacks 3.16% 5-9 hours. </td>
+    <td dir="ltr">No information about attack intensity, i.e. peak bandwidth or packet rate of attacks.</td>
+    <td dir="ltr">&quot;The number of unique targets of DDoS attacks in this report is counted by the number
+        of unique IP addresses in the quarterly statistics.&quot; <span style="font-style:italic;">Carpet bombing
+            attacks would count as many different targets.</span></td>
+    <td dir="ltr">No information about the number of vectors in attacks.</td>
+    <td dir="ltr">&quot;A total of 39.61 percent of targets, affected by 39.60 percent of attacks, were
+        located in the US.&quot;<br>&quot;In Q3 2022, the top four countries in terms of resources attacked remained
+        unchanged from the previous reporting period. The US (39.60%) remained in first place, despite losing 6.35
+        percentage points. Mainland China’s share (13.98%) increased by almost the same amount, up 6.31 percentage
+        points, securing second place. Germany (5.07%) remains in third and France (4.81%) in fourth place.&quot;</td>
+    <td dir="ltr">&quot;DDoS Intelligence statistics are limited to botnets detected and analyzed by
+        Kaspersky. &quot;</td>
+    </tr>
+    </th>
+    <td dir="ltr">LINK11</td>
+    <td dir="ltr">DDoS landscape in 2022</td>
+    <td dir="ltr">DDOS-REPORT 2022</td>
+    <td dir="ltr">Form/<span
+            style="text-decoration:underline;-webkit-text-decoration-skip:none;text-decoration-skip-ink:none;color:#1155cc;"><a
+                target="_blank"
+                href="https://www.link11.com/en/download/ddos-report-2022/#download-detail-form">PDF</a></span></td>
+    <td dir="ltr">2022</td>
+    <td dir="ltr">p8: &quot;In 2022, the number of attacks dropped by 79% compared to last year&quot;</td>
+    <td dir="ltr">p19: &quot;In 2022, LSOC recorded a flood of amplification techniques. The Internet service
+        most frequently exploited for attacks and abused as an amplifier in 2022 was DNS (60%), followed by NTP (24%),
+        SNPM (4%), and Apple Remote (4%).&quot; In 2021, DNS was 17%, and NTP, 19%.</td>
+    <td dir="ltr">No specific information about direct/path attacks and associated vectors.</td>
+    <td dir="ltr"></td>
+    <td dir="ltr">p15: Figure shows that B/W peak decreased around Oct-Dec 2022.</td>
+    <td dir="ltr">p13: &quot;The duration of DDoS attacks recorded on the Link11 network in 2022 has
+        shortened compared to the same period last year. While there were significant outliers almost every month, the
+        overall attack duration decreased&quot;<br>p14: &quot;Most attacks (71%) lasted less than 5 minutes. One-fifth
+        of all registered attacks (20%) were between 5 and 15 minutes long, and another 8% were up to 60 minutes long.
+        Only about 1% of attacks were longer than 60 minutes.&quot;<br>Longest attack 28h15m. 71% attacks &lt;5min. 20%
+        5-15 min. 1% &gt;1h.</td>
+    <td dir="ltr">p15: &quot;largest attack in 2022 was stopped at 574 Gbit/s, which is very low compared to
+        2021.&quot; <br>p15: &quot;While the average number of packets per second was 3.3 million during the review
+        period, the packet rate was significantly lower in 2021.&quot;<br>p15: &quot;A look at the correlation between
+        the duration and intensity of DDoS attacks reveals a change, especially for the first half of 2022: the attacks
+        are simultaneously more intense and shorter&quot;</td>
+    <td dir="ltr">p15: &quot;The reason for this is less “carpet bombing” in the attacks registered on the
+        Link11 network. These technically complex DDoS attacks are difficult to detect because they have very low
+        traffic per IP address&quot;</td>
+    <td dir="ltr">p18: &quot;The highest number of concurrent vectors observed in the Link11 network was 18,
+        the largest multi-vector attacks observed in Link11‘s network to date.&quot;</td>
+    <td dir="ltr">No information about targets, such as Industries, regions or countries affected.</td>
+    <td dir="ltr">No information about sources or methodology used.</td>
+    </tr>
+    </th>
+    <td dir="ltr">Lumen</td>
+    <td dir="ltr">DDoS landscape in Q4 2022</td>
+    <td dir="ltr">Lumen Quarterly<br>DDoS Report<br>Q4 2022</td>
+    <td dir="ltr">Open/<span
+            style="text-decoration:underline;-webkit-text-decoration-skip:none;text-decoration-skip-ink:none;color:#1155cc;"><a
+                target="_blank" href="https://blog.lumen.com/q4-2022-lumen-ddos-quarterly-report/">PDF</a></span></td>
+    <td dir="ltr">2022</td>
+    <td dir="ltr">p7: &quot;In Q4 2022, Lumen mitigated 9,195 attacks — more than any other quarter in 2021
+        or 2022. This is a 66% increase from Q3 and a <span style="font-weight:bold;">147% increase year over
+            year</span>.&quot;<br><span style="font-style:italic;">However, it could be an increase of 22%, by comparing
+            with the sum of the numbers in the 4 reports of 2021: 6.1k Q1, 4.5k Q2, 5.5k Q3, 9k Q4.</span></td>
+    <td dir="ltr">p12: &quot;DNS amplification attacks became more popular in the second half of 2022 and in
+        <span style="font-weight:bold;">Q4 account for 29% of activity</span>, which is a 73% quarterly increase and a
+        drastic spike compared to Q4 2021 when it only accounted for 1% of activity.&quot;
+    </td>
+    <td dir="ltr">p12: &quot;TCP SYN Flooding was still used frequently, accounting for 25% of activity,
+        which was a 16% increase from Q3 and an 89% increase from Q4 2021.&quot;</td>
+    <td dir="ltr">p12: &quot;Static Filtering accounted for 16% of activity in Q4, which is a 4% decrease
+        quarter-over-quarter.&quot; <span style="font-style:italic;">This seems to be the only report to mention static
+            filtering as a class of attack, but it is actually a mitigation form. </span></td>
+    <td dir="ltr">No plot or table with longitudinal data for the period considered.</td>
+    <td dir="ltr">p10: &quot;68% of all attacks on Lumen On-Demand DDoS mitigation customers in Q4 were under
+        10 minutes.&quot;<br>See plots on the same page.</td>
+    <td dir="ltr">p8: &quot;In the first half of the year, Lumen mitigated several large attacks, including
+        775 Gbps in Q1 and 1.06 Tbps in Q2. However, the median attack size at those times were rather small (0.19 Mbps
+        and .11 Mbps respectively).&quot; According to table, in 2022, largest attack was 20% smaller (bps) than
+        2021.<br></td>
+    <td dir="ltr">No information about attacks with carpet-bombing.</td>
+    <td dir="ltr">p13: &quot;We finished out the year with DNS amplification combined with TCP SYN Flooding
+        being the most leveraged multi-vector attack&quot;. </td>
+    <td dir="ltr">p14: &quot;Of the 1,000 largest attacks Lumen mitigated, 97% targeted these top five
+        verticals (in order): Telecommunications, Software and Technology, Gaming, Government, and Hosting. ... It is
+        important to note that a single government customer represented 60% of all the attacks Lumen mitigated in
+        Q4&quot;</td>
+    <td dir="ltr">p5: &quot;Where does this threat intelligence come from? This report is developed with the
+        participation of a few teams — our DDoS mitigation operations team and our Black Lotus Labs® team work together
+        to come up with insights for our readers. Black Lotus Labs is the threat intelligence team within Lumen. It is
+        made up of a group of security professionals and data scientists whose mission is to leverage Lumen’s global
+        network visibility to both help protect our customers and keep the internet clean. Black Lotus Labs uses threat
+        hunting and analysis, as well as machine learning and automated threat validation, to identify and disrupt the
+        work of malicious actors.&quot;</td>
+    </tr>
+    </th>
+    <td dir="ltr">Microsoft</td>
+    <td dir="ltr">DDoS landscape in 2022</td>
+    <td dir="ltr">2022 in review: DDoS attack trends and insights</td>
+    <td dir="ltr">Open/<span
+            style="text-decoration:underline;-webkit-text-decoration-skip:none;text-decoration-skip-ink:none;color:#1155cc;"><a
+                target="_blank"
+                href="https://www.microsoft.com/en-us/security/blog/2023/02/21/2022-in-review-ddos-attack-trends-and-insights/">Web</a></span>
+    </td>
+    <td dir="ltr">2022</td>
+    <td dir="ltr">&quot;In total, we mitigated upwards of 520,000 unique attacks against our global
+        infrastructure during 2022.&quot;</td>
+    <td dir="ltr">In Figure 2. Attack type, UDP R/A 9%.<br>&quot;We observed <span style="font-weight:bold;">TCP
+            reflected amplification attacks</span> becoming more prevalent, with attacks
+        on Azure resources using diverse types of reflectors and attack vectors. This new attack vector is taking
+        advantage of <span style="font-weight:bold;">improper TCP stack implementation in middleboxes</span>, such as
+        firewalls and deep packet inspection devices, to <span style="font-weight:bold;">elicit amplified responses that
+            can reach infinite amplification in some cases</span>. As an example, in April 2022, we monitored a
+        reflected amplified SYN+ACK attack on an Azure resource in Asia. The attack reached 30 million packets per
+        second (pps) and lasted 15 seconds. Attack throughput was not very high, however there were 900 reflectors
+        involved, each with retransmissions, resulting in high pps rate that can bring down the host and other network
+        infrastructure.&quot;</td>
+    <td dir="ltr">&quot;TCP attacks remain the most common attack vector. TCP attacks were the most frequent
+        form of DDoS attack encountered in 2022, <span style="font-weight:bold;">comprising 63% of all attack
+            traffic</span>, which includes all TCP attack vectors: TCP SYN, TCP ACK, TCP floods, etc.&quot; <span
+            style="font-style:italic;">The analysis seems to use traffic to rank the prevalence of attacks, not attack
+            count; this would potentially highlight volumetric attacks.<br></span>In Figure 2. Attack type, UDP flood
+        13%.<br>&quot;Out of UDP flood attacks, spoofed floods consumed most of the attack volume with
+        53%.&quot;<br>&quot;Packet anomaly attacks made up 15% of attacks.&quot; <span style="font-style:italic;">It is
+            unclear what kind of packet anomaly the report refers to, but we assume this is invalid headers, such as a
+            TCP packet with no bits on.</span><br></td>
+    <td dir="ltr">UDP 22% of attacks.</td>
+    <td dir="ltr">Figure 1. Attack volume shows how the attack volume varies daily throughout the year<span
+            style="font-style:italic;">. </span>Apart from the very end, the volume stays <span
+            style="font-weight:bold;">above the average for most of the last quarter</span>.</td>
+    <td dir="ltr">&quot;Shorter attacks continue to be popular. Shorter duration attacks were more commonly
+        observed this past year, with 89% of attacks lasting less than one hour. Attacks spanning <span
+            style="font-weight:bold;">one to two minutes made up 26%</span> of the attacks seen this year. ... Attackers
+        often use multiple short attacks over the span of multiple hours to make the most impact while using the fewest
+        number of resources.&quot; </td>
+    <td dir="ltr">&quot;In May, we mitigated a 3.25 terabits per second (TBps) attack in Azure, the largest
+        attack in 2022.&quot;</td>
+    <td dir="ltr">No information about attacks with carpet-bombing.</td>
+    <td dir="ltr">No information about the number of vectors in attacks.</td>
+    <td dir="ltr">&quot;US, India, and East Asia top regions targeted by attacks&quot; USA represents 45% of
+        attacks, and India, 13%. </td>
+    <td dir="ltr">No information about sources or methodology used.</td>
+    </tr>
+    </th>
+    <td dir="ltr">NBIP</td>
+    <td dir="ltr">DDoS landscape in Q4 2022</td>
+    <td dir="ltr">DDoS attack figures from the fourth quarter 2022</td>
+    <td dir="ltr">Open/<span
+            style="text-decoration:underline;-webkit-text-decoration-skip:none;text-decoration-skip-ink:none;color:#1155cc;"><a
+                target="_blank"
+                href="https://www.nbip.nl/wp-content/uploads/2023/01/NBIP%20-%20Infographic%20-%20DDoS%20data%20-%20Q4%202022%20%5BEN%5D.pdf">PDF</a></span>
+    </td>
+    <td dir="ltr">2022 Q4</td>
+    <td dir="ltr">379 attacks in Q4 2022. <br>Bar plot attacks/quarter: 666, 514, 442, 379. </td>
+    <td dir="ltr">19.6% DNS amplification; 24% NTP amplification; 4.7% LDAP amplification. <span
+            style="font-style:italic;">By comparing the quarterly reports in 2022, we observe that these fractions
+            fluctuate substantially. For example, in Q2, there was 41% of DNS amplification, and Memcached was present
+            with 8%.</span></td>
+    <td dir="ltr">Pie chart shows 21.5% TCP flag; 10.3% UDP flood. </td>
+    <td dir="ltr"></td>
+    <td dir="ltr">&quot;A <span style="font-weight:bold;">consistent decline in the number of DDoS attacks
+            quarter over quarter</span>, with this trend continuing since the fourth quarter of 2021.&quot; </td>
+    <td dir="ltr">&quot;Prolonged attacks &gt;4 hours&quot; 38 in Q4</td>
+    <td dir="ltr">&quot;Significant DDoS attacks, with large attack sizes (381 Gbps and 364 Mpps).&quot;</td>
+    <td dir="ltr">No information about attacks with carpet-bombing.</td>
+    <td dir="ltr">&quot;The use of multi-vector attacks is on the rise, with an increasing number of
+        attackers attempting to simultaneously overwhelm their victims&#39; networks by utilizing a diverse set of
+        attack methods.&quot;</td>
+    <td dir="ltr">&quot;Geopolitically, the ongoing conflict in Ukraine has led to an increase in<br>targeted
+        DDoS attacks on government services and critical infrastructure.<br>This trend is expected to continue in 2023,
+        with an emphasis on attacks on<br>the financial, energy, and healthcare sectors.&quot;</td>
+    <td dir="ltr">No information about sources or methodology used.</td>
+    </tr>
+    </th>
+    <td dir="ltr">NetScout</td>
+    <td dir="ltr">DDoS landscape in 2H 2022</td>
+    <td dir="ltr">5th Anniversary DDoS Threat Intelligence Report: Unveiling the New Threat Landcape</td>
+    <td dir="ltr">Open/<span
+            style="text-decoration:underline;-webkit-text-decoration-skip:none;text-decoration-skip-ink:none;color:#1155cc;"><a
+                target="_blank"
+                href="https://www.netscout.com/threatreport/wp-content/uploads/2023/04/Threat-Report-2H2022.pdf">PDF</a></span>
+    </td>
+    <td dir="ltr">2022 2H</td>
+    <td dir="ltr">p3: &quot;DDoS attacks nearly reached a plateau of 13 million for 2022&quot;<br></td>
+    <td dir="ltr">p9: &quot;Direct-Path DDoS Attacks. ... <span style="font-weight:bold;">reflection/amplification
+            attacks declined 18 percent since
+            2020</span>&quot;<br>p9: Figure 10: Top 5 Vectors. 1,189,774 DNS amplification, 1,108,008 TCP SYN/ACK Amp
+    </td>
+    <td dir="ltr">p3: &quot;It was in early 2021 when we detected a <span style="font-weight:bold;">tectonic
+            shift in preference by adversaries to TCP-based, direct-path attacks</span>—a move that carries throughout
+        2022 and one that organizations and enterprises must address to protect stateful devices and downstream
+        customers.&quot;<br>p9: &quot;Direct-Path DDoS Attacks. ... While reflection/amplification attacks declined 18
+        percent since 2020, <span style="font-weight:bold;">direct-path attacks climbed 18 percent over three
+            years</span>, creating a difference of nearly 2 million attacks between them (Figure 12).&quot;<br>p9:
+        &quot;HTTP and HTTPS Application-Layer Attacks. ... Based on a sampling of our data set, we witnessed a <span
+            style="font-weight:bold;">487 percent increase in HTTP/HTTPS attacks since 2019</span> (Figure
+        11).&quot;<br>p9: Figure 10: 1,979,785 TCP ACK; 1,349,140 TCP SYN; 1,092,525 TCP RST<br>p9: &quot;A form of
+        application-layer attack, DNS query floods have more than tripled since they really became weaponized in 2019, a
+        243 percent increase in adoption of this attack technique (Figure 14). The average daily attack count for 2022
+        is approximately 850 attacks, a 67 percent increase over the 522 average in 2021.&quot;</td>
+    <td dir="ltr"></td>
+    <td dir="ltr">p9: Figure 12: Reflection/Amplification vs. Direct-Path Attacks. <span
+            style="font-style:italic;">Shows a split between the amount of Reflection/Amplification attacks and
+            Direct-Path attacks in early 2022, with the Direct-Path being higher.</span></td>
+    <td dir="ltr">p3: &quot;Figure 1: Attack Duration Breakdown (2019–2022)&quot;: 25%&lt;5min, 36% 5-10min,
+        30% 10-60min, 7% 1-12h </td>
+    <td dir="ltr">No information about attack intensity, i.e. peak bandwidth or packet rate of attacks.</td>
+    <td dir="ltr">p10: &quot;This trend started in November 2021 and really accelerated in August 2022. Daily
+        attacks using this method rose from an average of 670 in 2021 to an average of 1,134 in 2022, a <span
+            style="font-weight:bold;">69 percent increase</span>.&quot; Figure 13: Carpet-Bombing Attacks show the daily
+        attack count.</td>
+    <td dir="ltr">p3: Figure 2: Multi-vector breakdown. <span style="font-weight:bold;">60% 1 vector, 29% 2-5
+            vectors</span>, 8% 6-10 vectors, 3% 11+ vectors</td>
+    <td dir="ltr">p12: DDoS Attack Motivations</td>
+    <td dir="ltr">p3: &quot;More than two decades of working with <span style="font-weight:bold;">more than
+            500 internet service providers</span> (ISPs) has allowed us to build a sensor network that spans more than
+        50 percent of the world’s largest networks.&quot;<br>p5: &quot;Global visibility is key to assessing the DDoS
+        threat landscape. Without visibility, it would be extremely difficult to create a timeline of history, identify
+        trends, and adequately prepare for and defend against network-based attacks such as DDoS. Our global sensor
+        network gives NETSCOUT incredible visibility into the networks around the world, allowing us to see a staggering
+        401+ Tbps average of internet traffic (Figure 3)—an estimated 50 percent of international transit capacity. That
+        is 3 petabytes or 24.06 petabits of transit per minute!&quot;<br>p7: &quot;Enterprise. With 13 million attacks
+        in the ISP networks, <span style="font-weight:bold;">we turned our attention to the enterprise</span>, where we
+        gathered data from <span style="font-weight:bold;">one-fifth</span> of our enterprise customers and found more
+        than 3,500 events per day or 145 per hour. These events stemmed from <span style="font-weight:bold;">high-impact
+            traffic tripping predefined thresholds, creating a denial-of-service (DoS) alert. Not all of these alerts
+            are DDoS attacks;</span> high-throughput scanning also can trip these thresholds. Nonetheless, these events
+        along with GeoIP blocks, application-layer attacks, and inbound brute-forcing/ exploitation resulted in traffic
+        being dropped to downstream users on these networks.&quot;</td>
+    </tr>
+    </th>
+    <td dir="ltr">NexusGuard</td>
+    <td dir="ltr">DDoS landscape in 2022</td>
+    <td dir="ltr">DDoS Statistical Report for 2022</td>
+    <td dir="ltr">Form/<span
+            style="text-decoration:underline;-webkit-text-decoration-skip:none;text-decoration-skip-ink:none;color:#1155cc;"><a
+                target="_blank"
+                href="https://blog.nexusguard.com/threat-report/ddos-statistical-report-for-2022">PDF</a></span></td>
+    <td dir="ltr">2022</td>
+    <td dir="ltr">p3: &quot;In 2022, the <span style="font-weight:bold;">total attack count</span> and
+        average attack size both <span style="font-weight:bold;">increased by 115.07%</span> and decreased 22.37%
+        respectively compared to the figures registered in 2021.&quot;<br></td>
+    <td dir="ltr">p4: &quot;<span style="font-weight:bold;">⬆︎2,472.03%</span> NTP Amplification
+        Attack&quot;, p6: &quot;⬆︎<span style="font-weight:bold;">28,233.16%</span> Memcached Attack&quot;. <span
+            style="font-style:italic;">These values are too high; we are not confident they are correct. </span><br>p4:
+        Figure 2 - Top 10 Attack Vectors in 2021 and 2022. for the prevalence of attack vectors. NTP 31%, Memcached 14%,
+        DNS Amp 2.34%. <br>p7: &quot;In 2022, NTP Amplification and Memcached Attacks were the predominant two attack
+        types, contributing 31.01% and 14.33% respectively, while UDP Attacks ranked third at 13.21%.&quot;<br>p9:
+        &quot;Volumetric (Amplification) attacks, <span style="font-weight:bold;">contributing 51.28% of the total
+            attacks</span> recorded in 2022, <span style="font-weight:bold;">increased by 414.63% YoY</span>&quot;<br>
+    </td>
+    <td dir="ltr">p6: &quot;⬇︎0.23% D/P volumetric flood&quot;<br>p6: &quot;⬆︎718% Application
+        attacks&quot;<br></td>
+    <td dir="ltr">p7: Types of Attack Vectors. Figure 2</td>
+    <td dir="ltr">No plot or table with longitudinal data for the period considered.</td>
+    <td dir="ltr">p13: &quot;Over <span style="font-weight:bold;">66% of attacks were shorter than 90
+            minutes</span>, while the rest lasted longer than 90 minutes. 18.26% of attacks exceeded 1200 minutes. The
+        average attack duration recorded in 2022 was 82.76 minutes, with the longest attack lasting 27642.12 minutes.
+        Both the maximum and average duration increased by 79.40% and fell by 10.42% respectively, YoY.&quot;</td>
+    <td dir="ltr">p14: &quot;Attack Size Distribution. Of the attacks recorded in 2022, <span
+            style="font-weight:bold;">88.14% were smaller than 1Gbps.</span> 11.68% ranged between 1Gbps - 10Gbps, and
+        0.18% were larger than 10Gbps.88.14% &lt;1 Gbps. <span style="font-weight:bold;">0.18% &gt;=10
+            Gbps</span>.&quot; See Fig. 8.</td>
+    <td dir="ltr">p15: &quot;Bit-and-Piece Attacks. ASN-level Communications Service Providers (CSPs) around
+        the world, especially ISPs, continue to be impacted by the stealthy, sophisticated bit-and-piece attacks, which
+        are carried out by drip-feeding doses of junk traffic into a large IP pool.&quot; <span
+            style="font-style:italic;">We believe this description is equivalent to a carpet-bombing
+            attack.<br></span>According to Summary 1 - Bit-and-Piece Attacks in 2021 and 2022, Targeted ASNs 240 Total
+        No. of IP Prefixes (Class C) Under Attack 3,079</td>
+    <td dir="ltr">p11: &quot;Quantity of Attack Vectors. Single-vector attacks played the leading role in
+        2022. 85.64% of attacks were single vector, while the rest were multi-vector.&quot;<br>p12: &quot;The most
+        commonly used multi-vector attack combination recorded in 2022 was “TCP ACK Attack coupled with UDP Attack”,
+        contributing 18.86%. In second place was a combination of “MEMCACHED Attack and NTP Amplification Attack”,
+        contributing 12.02%. And third place was a combination of “HTTP Flood and HTTPS Flood”, contributing
+        6.78%.&quot;</td>
+    <td dir="ltr">p23: Reflected Attack Destination Distribution.</td>
+    <td dir="ltr">p26: &quot;Nexusguard observes and collects real-time data on threats facing enterprise and
+        service-provider networks worldwide. Threat intelligence is gathered via attack data, research, publicly
+        available information, Honeypots, ISPs, and logs recording traffic between attackers and their targets. The
+        analysis conducted by our research team identifies vulnerabilities and measures attack trends worldwide to
+        provide a comprehensive view of DDoS threats.&quot;</td>
+    </tr>
+    </th>
+    <td dir="ltr">Nokia</td>
+    <td dir="ltr">General security report that includes some DDoS from p16. Not much information</td>
+    <td dir="ltr">Threat Intelligence<br>Report 2023</td>
+    <td dir="ltr">Form/<span
+            style="text-decoration:underline;-webkit-text-decoration-skip:none;text-decoration-skip-ink:none;color:#1155cc;"><a
+                target="_blank"
+                href="https://www.nokia.com/networks/security-portfolio/threat-intelligence-report/">PDF</a></span></td>
+    <td dir="ltr">2021-2023</td>
+    <td dir="ltr">No information about attack counts</td>
+    <td dir="ltr">No information about reflection/amplification attacks.</td>
+    <td dir="ltr">No specific information about direct/path attacks and associated vectors.</td>
+    <td class="s1"></td>
+    <td class="s2" dir="ltr">Based on Fig. 9, it looks like there were fewer attacks from Sept 2022 til March 2023 than
+        in the preceding 6 months.</td>
+    <td dir="ltr">No information about attack duration.</td>
+    <td dir="ltr">p16: &quot;Figure 9. Distribution of DDoS attacks by peak intensity (Gbps), January 2022 –
+        March 2023&quot; <br><span style="font-style:italic;">There is no explanation of the figure, but we believe
+            there are ~7-8 attacks at the Tbps level. <br></span></td>
+    <td dir="ltr">No information about attacks with carpet-bombing.</td>
+    <td dir="ltr">No information about the number of vectors in attacks.</td>
+    <td dir="ltr">Comments about DDoS being used in cyberwarfare.</td>
+    <td dir="ltr">Nokia Deepfield</td>
+    </tr>
+    </th>
+    <td dir="ltr">NSFocus</td>
+    <td dir="ltr">DDoS landscape in 2022</td>
+    <td dir="ltr">2022<br>Global DDoS Attack Landscape Report</td>
+    <td dir="ltr">Form/<span
+            style="text-decoration:underline;-webkit-text-decoration-skip:none;text-decoration-skip-ink:none;color:#1155cc;"><a
+                target="_blank"
+                href="https://nsfocusglobal.com/company-overview/resources/2022-global-ddos-attack-landscape-report/">PDF</a></span>
+    </td>
+    <td dir="ltr">2022</td>
+    <td dir="ltr">p1: &quot;DDoS Attacks Increased <span style="font-weight:bold;">Dramatically</span>. The
+        data shows that DDoS attacks in 2022 <span style="font-weight:bold;">increased by 273%</span> compared to
+        2021&quot;<br></td>
+    <td dir="ltr">p0: &quot;About one-third of terabit attacks were reflective UDP attacks, while the rest
+        were mainly non-reflective UDP attacks.&quot;<br>p6: &quot;As a popular attack method in the past two years, TCP
+        reflection attacks represented 3%&quot;</td>
+    <td dir="ltr">p7: &quot;UDP Fragment Flood Stood Out. In 2022, UDP flood attacks, SYN flood attacks, and
+        UDP fragment flood attacks were top 3 network-layer DDoS attacks.&quot;</td>
+    <td dir="ltr">p6: Three pizza plots show vector prevalence, but without actual numbers. </td>
+    <td class="s2" dir="ltr">Multiple plots show values month-by-month. No discernible effect at the end of the year. On
+        the contrary, high-volume attacks increase in Oct-Nov-Dec.</td>
+    <td dir="ltr">p8: &quot;Nearly 70% of global DDoS attacks were shorter than 10 minutes, about 20% lasted
+        10 to 30 minutes, and the rest exceeded 30 minutes. Currently, &quot;quick spike&quot; attacks
+        prevail.&quot;<br>~70% of attacks &lt;10m, ~20% 10-30m. <br><br></td>
+    <td dir="ltr">p1: &quot;High-Volume DDoS Attacks Were on the Rise. In 2022, the number of terabit-level
+        DDoS attacks was approximately 40, and the attack peak exceeded 1 Tbps in six months&quot;<br>p2: &quot;On
+        average, an attack exceeding 100 Gbps happened every hour.&quot;</td>
+    <td dir="ltr">No information about attacks with carpet-bombing.</td>
+    <td dir="ltr">No information about the number of vectors in attacks.</td>
+    <td dir="ltr">p5: &quot;DDoS Attacks Increasingly Targeted Critical Infrastructure&quot;<br>p4:
+        &quot;DDoS attacks against a single target became increasingly persistent. 56.91% of victims experienced only
+        one DDoS attack in 2021, whereas victims were more prone to multiple DDoS attacks once identified as the target
+        in 2022.&quot;</td>
+    <td dir="ltr">No information about sources or methodology used.</td>
+    </tr>
+    </th>
+    <td dir="ltr">Qrator</td>
+    <td dir="ltr">Quarterly report about DDoS and BGP incidents, DDoS landscape in 2022 Q4. <span
+            style="font-style:italic;">Report distingues between L3-L4 and L7 attacks.</span></td>
+    <td dir="ltr">Q4 2022 DDoS attacks and BGP incidents</td>
+    <td dir="ltr">Open/<span
+            style="text-decoration:underline;-webkit-text-decoration-skip:none;text-decoration-skip-ink:none;color:#1155cc;"><a
+                target="_blank"
+                href="https://blog.qrator.net/en/q4-2022-ddos-attacks-and-bgp-incidents-report_163/">Web</a></span></td>
+    <td dir="ltr">2022 Q4</td>
+    <td dir="ltr">&quot;In 2022, DDoS attacks increased by 73.09% compared to 2021.&quot;</td>
+    <td dir="ltr">&quot;Amplificators and Amplification factors in 2022. The data is for 2022 - the number of
+        amplificators/reflectors publicly available on the internet and the average amplification factors we&#39;ve
+        registered.&quot;<br><span style="font-style:italic;">Presents the number of exploitable servers and the
+            corresponding amplification factor, but does not provide information about such attacks.</span></td>
+    <td dir="ltr">&quot;In the fourth quarter of 2022, the following attack vectors were prevalent: UDP
+        flood, accounting for 37.05% of all L3-L4 attacks; SYN flood, responsible for 26.84% of volumetric attacks; and
+        IP flood, with a smaller share of 13.8%.&quot;<br>&quot;<span style="font-weight:bold;">UDP flood prevailed as
+            the leading attack vector throughout the year</span>, except for the first quarter of the year, when the SYN
+        Pood was the top technique.&quot;<br>&quot;In the attack vector statistics without concurrency, we again see the
+        prevalence of the UDP flood, although the proportion is lower than in Q3 when it was 51.79%. The SYN flood has
+        gained the most, rising from 20.37% in Q3 to 41.34% in Q4.&quot;<br><span style="font-style:italic;">We note
+            that the numbers presented in the report do not include any form of
+            reflection-amplification.<br></span>&quot;Application Layer Attack Distribution. Unlike Q3, the largest
+        category in Q4 2022 is <span style="font-weight:bold;">Request Rate Patterns</span>, which includes anything
+        that deviates from what is expected from a legitimate user in terms of request rate, and collected <span
+            style="font-weight:bold;">30.37% of Q4 2022 application layer attacks</span>. It is followed by Rotating
+        Client Secondary Attributes, which refers to an <span style="font-weight:bold;">unusual set of headers in the
+            request</span>, and accounts for more than a quarter - <span style="font-weight:bold;">28.05%</span> - of L7
+        DDoS attacks. That differs from the third category, <span style="font-weight:bold;">Abnormal URL
+            Traversal</span>, which is exactly what it sounds like - an action that a legitimate user often wouldn&#39;t
+        even be able to perform, where we saw <span style="font-weight:bold;">11.77%</span> of the attack data. <span
+            style="font-weight:bold;">Broken HTTP semantics now accounts for &quot;only&quot; 6.88% of L7
+            attacks</span>. The top four categories together account for 77.07% of L7 attacks, with 13.10% in Multiple
+        Matched Criteria, where we put all concurrent L7 attacks.</td>
+    <td dir="ltr">The diagram &quot;Attack Vectors Concurrency&quot; shows a detailed breakdown of vectors.
+        <span style="font-style:italic;">This is more accurate than similar plots in other reports since it represents
+            both isolated and concurrent use of vectors. <br></span>&quot;As we mentioned earlier, the interchange
+        between IP (fragments) flood and UDP flood quarter over quarter is somewhat highly expected. Additionally, we
+        expect this trend to stay in the future. The reason is attackers are trying to improve the overall efficiency of
+        their devices by choosing larger amplification targets (like DNS records), and it is pretty standard that those
+        chunks of data significantly surpass the MTU limit. Thus fragmentation is inevitable.&quot; <span
+            style="font-style:italic;">The example indicates that large DNS responses, likely from amplification, can be
+            reported as IP fragmentation.<br></span>&quot;The top-3 vectors combined make 77.69% of all the mitigated
+        attacks&quot;<br>
+    </td>
+    <td dir="ltr">Diagram &quot;Record year in DDoS attacks&quot; shows side-by-side the L3-L4 and L7 attack
+        fractions per quarter. <span style="font-style:italic;">We see that L3-L4 attacks were much smaller in Q4
+            (13.11%) than other quarters (43.20%, 23.20%, 20.50%). The same reduction in Q4 was </span><span
+            style="font-weight:bold;font-style:italic;">not </span><span style="font-style:italic;">visible in the L7
+            numbers (quarter fractions were 21.44%, 42.19%, 15.10%, 21.27%).</span></td>
+    <td dir="ltr">&quot;Comparing the duration data QoQ, the average attack time has almost doubled - from
+        1510 seconds in Q3 2022 to 2503 seconds in Q4. However, the median duration decreased for the first time since
+        Q2 2022, from 390 seconds to 210 seconds.&quot;<br>&quot;But the longest attack in Q4 lasted for 250,500 seconds
+        - <span style="font-weight:bold;">more than 69 hours</span>, which is still less than what we&#39;ve seen during
+        Q2 2022 when one of the attacks lasted <span style="font-weight:bold;">more than 100 hours</span>, and
+        especially Q1, when one attack lasted for <span style="font-weight:bold;">almost 11 days</span>.&quot;</td>
+    <td dir="ltr">&quot;On the bandwidth side of the attacks, we see that UDP flood and TCP flood are closer
+        at the maximums - <span style="font-weight:bold;">621.86 Gbps and 480.8 Gbps</span> respectively. However, the
+        difference is much more significant in the median, where the UDP flood shows 1.79 Gbps, which is still more than
+        two times lower than the IP flood median bandwidth of 3.71 Gbps.&quot;<br>&quot;In Q4 2022, the <span
+            style="font-weight:bold;">average attack bandwidth was 9.736 Gbps</span> - the record average bandwidth in
+        2022. These values only apply to volumetric attacks.&quot;</td>
+    <td dir="ltr">No information about attacks with carpet-bombing.</td>
+    <td dir="ltr">Diagram provides numbers about the concurrent use of vectors, i.e. multi-vector attacks.
+        <span style="font-style:italic;">It should be possible to estimate the fraction of multi-vector attacks from
+            these numbers.</span>
+    </td>
+    <td dir="ltr">No information about targets, such as Industries, regions or countries affected.</td>
+    <td dir="ltr">No information about sources or methodology used.</td>
+    </tr>
+    </th>
+    <td dir="ltr">Radware</td>
+    <td dir="ltr">DDoS landscape in 2022</td>
+    <td dir="ltr">2022-2023 Global Threat Analysis Report</td>
+    <td dir="ltr">Form/<span
+            style="text-decoration:underline;-webkit-text-decoration-skip:none;text-decoration-skip-ink:none;color:#1155cc;"><a
+                target="_blank" href="https://www.radware.com/2022-2023-global-threat-analysis-report/">PDF</a></span>
+    </td>
+    <td dir="ltr">2022</td>
+    <td dir="ltr">p5: “The total number of malicious events blocked by Radware’s Cloud DDoS Service in 2022
+        grew by 233%, compared to 2021. The number of DDoS attacks grew by 150%.”<br>p5: &quot;Throughout the year, the
+        number of DDoS attacks per customer kept increasing every quarter, from less than 1,000 attacks <span
+            style="font-weight:bold;">per quarter in Q4</span> of 2021 to over 2,500 attacks <span
+            style="font-weight:bold;">per customer in Q4</span> of 2022. By the end of 2022, the average number of
+        attacks mitigated per customer increased by over three times.&quot;<br>p5: &quot;the number of attacks a
+        customer witnessed per day at the end of 2021 was 8.41, compared to 29.3 attacks on average per day by the end
+        of 2022, a 3.5x increase.&quot;</td>
+    <td dir="ltr">p15: &quot;DNS amplification was the amplification attack vector that generated the most
+        volume in 2022, representing 77.1% of the total amplification volume. NTP amplification was the second most
+        abused amplification attack vector, accounting for 13% of the volume.&quot;</td>
+    <td dir="ltr">p14: &quot;By a significant margin, <span style="font-weight:bold;">the top attack vector
+            was UDP flood (78.1%)</span>, followed by UDP fragment flood (5.73%). TCP attacks through several variations
+        of flag attacks completed the vectors above 1% comprising TCP SYN (5.53%), TCP Out-of-State (5.27%), TCP SYN-ACK
+        (2.27%) and TCP RST (1.59%) floods.&quot; <span style="font-style:italic;">Based on another information in the
+            report, it is 78.1% of </span><span style="font-weight:bold;font-style:italic;">packets</span><span
+            style="font-style:italic;">.</span></td>
+    <td dir="ltr"></td>
+    <td dir="ltr">p5: Fig. 2: There was no visible reduction in the last quarter.<br></td>
+    <td dir="ltr">p6: Figure 6: Average attack duration per attack size</td>
+    <td dir="ltr">p6: Fig. 4: substantial increase in the number of smallest (rate &lt; 1 Gbps), modest
+        increase of largest (rate &gt; 250 Gbps) attacks. reduction in all other rates<br>p8: &quot;The largest attack
+        recorded in 2022 was 1.46Tbps, 2.8 times compared to the largest attack of 520Gbps in 2021.&quot; <span
+            style="font-style:italic;">In the Americas and globally.</span><br></td>
+    <td dir="ltr">No information about attacks with carpet-bombing.</td>
+    <td dir="ltr">p21: &quot;Figure 40: Number of dissimilar attack vectors per attack as a function of
+        attack size&quot;. Attacks &gt; 100Gbps had ~9 vectors. </td>
+    <td dir="ltr">p7: &quot;Regions and Industries. Finance was the most attacked industry in 2022, with
+        52.6% of the overall attack activity and a frequency of attacks growing 2.4% compared to 2021&quot;<br></td>
+    <td dir="ltr">No information about sources or methodology used.</td>
+    </tr>
+    </th>
+    <td dir="ltr">Zayo</td>
+    <td dir="ltr">DDoS landscape in <span style="font-weight:bold;">2023 1H</span>. Zayo is a tier-1 ISP.
+    </td>
+    <td dir="ltr">Protecting Your Business From<br>Cyber Attacks: The State of DDoS Attacks<br>DDoS (Insights
+        From Q1 &amp; Q2, 2023)</td>
+    <td dir="ltr">Open/<span
+            style="text-decoration:underline;-webkit-text-decoration-skip:none;text-decoration-skip-ink:none;color:#1155cc;"><a
+                target="_blank" href="https://go.zayo.com/zayo-ddos-protection-ebook/">PDF</a></span></td>
+    <td dir="ltr">2023 1H</td>
+    <td dir="ltr">p6: From bar plot, number of attacks in 2022 1H is approximately 19k (and ~72k attacks in
+        2023 1H)</td>
+    <td dir="ltr">No specific information about the use of reflection or amplification.</td>
+    <td dir="ltr">No specific information about direct/path attacks and associated vectors.</td>
+    <td class="s1"></td>
+    <td dir="ltr">No plot or table with longitudinal data for the period considered.</td>
+    <td dir="ltr">p11: &quot;The Duration of DDoS Attacks Attacks are getting longer, but <span
+            style="font-weight:bold;">over 83% of all attacks are still short-burst, lasting 10 minutes or
+            less</span>.&quot;<br>p11: &quot;The longest attack in Q2 was 42 days&quot;<br>p13: &quot;Duration of
+        Attacks by Industry Q1 and Q2, 2023&quot; Plot shows that attacks against the Government sector are much longer.
+    </td>
+    <td dir="ltr">No information about attack intensity, i.e. peak bandwidth or packet rate of attacks.</td>
+    <td dir="ltr">No information about attacks with carpet-bombing.</td>
+    <td dir="ltr">No information about the number of vectors in attacks.</td>
+    <td dir="ltr">p9: &quot;Total Number of Attacks Per Industry QoQ.&quot; Plot shows the number of attacks
+        per industry, with Telecom being much higher than the rest.<br>p10: &quot;In both Q1 and Q2, telecommunications
+        companies consistently experienced more DDoS attacks than any other industry. And from Q1 to Q2, this industry’s
+        attack activity grew a staggering 1,175%.&quot;</td>
+    <td dir="ltr">p5: &quot;This report reviews DDoS attack data collected from Zayo’s network-based DDoS
+        Protected customers.&quot;</td>
+    </tr>
+    </th>
+    <td class="s3" dir="ltr">Discussion</td>
+    <td class="s3" dir="ltr"></td>
+    <td class="s4" dir="ltr"></td>
+    <td class="s5" dir="ltr">Most (17) reports are open, while 7 require completing a form.<br>Most (16) reports are
+        PDFs, while the remaining 8 are Websites.</td>
+    <td class="s5" dir="ltr">Most (15) reports are said to be yearly, usually covering 2022, and comparing with 2021 or
+        earlier. Not all yearly reports have been released regularly. Four reports are issued quarterly.</td>
+    <td class="s5" dir="ltr">10 reports indicated growth in the total number of attacks over the previous year (or
+        years, as in Netscout case). 3 reports did not include a comparison, and 5 did not provide attack counts. 4
+        reports indicated a reduction in attacks.</td>
+    <td class="s5" dir="ltr">We could not find information about R/A attacks in 8 reports. While 3 reports indicate a
+        <span style="font-weight:bold;">reduction</span> in R/A (Arelion, Comcast, and Netscout), 2 reports show an
+        <span style="font-weight:bold;">increase</span> (Link11 and NexusGuard), with Microsoft reporting an increase of
+        TCP reflection.
+    </td>
+    <td class="s5" dir="ltr">We could not find any information about D/P attacks or vectors in 5 reports. No report
+        indicated a decrease in D/P attacks. Several reports stated the prevalence of D/P attacks, but did not indicate
+        whether this form of attack increased or decreased compared to the previous year. 5 reports observed an <span
+            style="font-weight:bold;">increase</span> in either HTTP/S attacks or, more broadly, L7 attacks.</td>
+    <td class="s5" dir="ltr">Reports varied wildly in how they presented data about attack vectors. There were
+        differences in the name of the vectors and potential overlaps, with occasional ambiguous use of terms. Almost no
+        report clarified how attacks with multiple vectors were counted; the notable exception was Qrator.</td>
+    <td class="s5" dir="ltr">Generally, information was not present or had to be inferred from graphs showing the
+        variation of some metric through time (weeks, months, quarters, years). The graphical representation of some
+        plots made it hard to read the values. It was often the case that values oscillated wildly from period to
+        period, such as quarter to quarter.</td>
+    <td class="s5" dir="ltr">Reports generally differed in the set of intervals chosen to group attack durations, making
+        it very hard to compare results among reports. For example, while one report may have used 0-1min, 1-10min, and
+        &gt; 10min, another may have used &lt; 5min, 5-10min, 10-60min, &gt; 60min.</td>
+    <td class="s5" dir="ltr">Reports generally differed in the set of intervals chosen to group attack intensity, making
+        it very hard to compare results among reports. For example, while one report uses &lt; 1 Gbps, 1-100 Gbps, &gt;
+        100 Gbps, another could have used 0-5 Mbps, 5-1000 Mbps, &gt; 1000 Mbps.</td>
+    <td class="s5" dir="ltr">Many different terms were used to refer to carpet-bombing. These include &quot;horizontal
+        attacks&quot;, &quot;prefix attacks&quot;, and &quot;bit-and-piece&quot;. Some reports ignore the technique,
+        while others emphasise it, to make the point that attacks are becoming harder to mitigate.</td>
+    <td class="s5" dir="ltr">While 11 reports completely ignore the issue of multi-vector attacks, some reports
+        highlight it, as a way to emphasise the growing complexity of attacks.</td>
+    <td class="s5" dir="ltr">In this column, &quot;target&quot; may refer to very different aspects of attacks. We
+        considered analysis of targeted Industries and/or regions/countries (potentially linked to geopolitical issues);
+        we did not consider the attack layer or type of service (e.g. DNS). It is possible that reports often
+        highlighted the affected industries to make the business case that they need to pay for protection, and
+        protection needs to be effective against increasingly more powerful and more complex attacks. In 5 reports,
+        there was no information. many cases. The grouping of Industries or sectors (the terms used) varied
+        substantially, and the numbers were very different among reports.</td>
+    <td class="s5" dir="ltr">Some of the reports state that the data comes from their networks. One (F5) acknowledges
+        explicitly the impact that this may have on the generalisation of trends. Generally, reports do not clarify how
+        the data was collected, from which regions of the globe, if from enterprises or ISPs, etc. There are some
+        notable exceptions, such as Netscout. Many reports (A10, Arelion, Lumen, Netscout, and NexusGuard) highlight the
+        need for Internet and attack visibility.</td>
+    </tr>
+    </tbody>
+</table>
